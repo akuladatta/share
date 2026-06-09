@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="utf-8">
+  <title>భగవద్గీత తెలుగు (Bhagavad Gita Telugu App)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #FAF6F0;
+      color: #2D3748;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    .loader {
+      border: 4px solid #F3E5D8;
+      border-top: 4px solid #8C1D1D;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    h2 {
+      margin: 0 0 10px 0;
+      color: #8C1D1D;
+    }
+    p {
+      color: #718096;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      // 1. Get the 'c' (chapter) and 's' (sloka) query parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const chapter = urlParams.get('c') || '';
+      const sloka = urlParams.get('s') || '';
+
+      // 2. Format the Play Store link with the referrer query parameter
+      const appId = 'com.bhagawathgita.telugu';
+      let playStoreUrl = `https://play.google.com/store/apps/details?id=${appId}`;
+      
+      if (chapter && sloka) {
+        // Encode the parameters inside the referrer parameter (e.g. referrer=c%3D1%26s%3D5)
+        const referrerString = encodeURIComponent(`c=${chapter}&s=${sloka}`);
+        playStoreUrl += `&referrer=${referrerString}`;
+      }
+
+      // 3. Automatically redirect to the Play Store after a short delay
+      setTimeout(function() {
+        window.location.href = playStoreUrl;
+      }, 1200);
+    };
+  </script>
+</head>
+<body>
+  <div class="loader"></div>
+  <h2>భగవద్గీత తెలుగు యాప్</h2>
+  <p>గూగుల్ ప్లే స్టోర్‌కు రీడైరెక్ట్ చేస్తున్నాము...</p>
+</body>
+</html>
